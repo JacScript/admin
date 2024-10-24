@@ -1,67 +1,67 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const productSlice = createSlice({
-  name: "product",
+const clientSlice = createSlice({
+  name: "client",
   initialState: {
-    products: [],
+    clients: [],
     isFetching: false,
     error: false,
   },
   reducers: {
     //GET ALL
-    getProductStart: (state) => {
+    getClientStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
-    getProductSuccess: (state, action) => {
+    getClientSuccess: (state, action) => {
       state.isFetching = false;
       state.products = action.payload;
     },
-    getProductFailure: (state) => {
+    getClientFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
     //DELETE
-    deleteProductStart: (state) => {
+    deleteClientStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
-    deleteProductSuccess: (state, action) => {
+    deleteClientSuccess: (state, action) => {
       state.isFetching = false;
       state.products.splice(
         state.products.findIndex((item) => item._id === action.payload),
         1
       );
     },
-    deleteProductFailure: (state) => {
+    deleteClientFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
     // //UPDATE
-    updateProductStart: (state) => {
+    updateClientStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
-    updateProductSuccess: (state, action) => {
+    updateClientSuccess: (state, action) => {
       state.isFetching = false;
       state.products[
         state.products.findIndex((item) => item._id === action.payload.id)
       ] = action.payload.product;
     },
-    updateProductFailure: (state) => {
+    updateClientFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
     //CREATE
-    addProductStart: (state) => {
+    addClientStart: (state) => {
       state.isFetching = true;
       state.error = false;
     },
-    addProductSuccess: (state, action) => {
+    addClientSuccess: (state, action) => {
       state.isFetching = false;
       state.products.push(action.payload);
     },
-    addProductFailure: (state) => {
+    addClientFailure: (state) => {
       state.isFetching = false;
       state.error = true;
     },
@@ -69,18 +69,18 @@ const productSlice = createSlice({
 });
 
 export const {
-  getProductStart,
-  getProductSuccess,
-  getProductFailure,
-  deleteProductStart,
-  deleteProductSuccess,
-  deleteProductFailure,
-  updateProductStart,
-  updateProductSuccess,
-  updateProductFailure,
-  addProductStart,
-  addProductSuccess,
-  addProductFailure,
-} = productSlice.actions;
+  getClientStart,
+  getClientSuccess,
+  getClientFailure,
+  deleteClientStart,
+  deleteClientSuccess,
+  deleteClientFailure,
+  updateClientStart,
+  updateClientSuccess,
+  updateClientFailure,
+  addClientStart,
+  addClientSuccess,
+  addClientFailure,
+} = clientSlice.actions;
 
-export default productSlice.reducer;
+export default clientSlice.reducer;
