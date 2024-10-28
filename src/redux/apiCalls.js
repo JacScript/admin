@@ -109,7 +109,7 @@ export const updateClient = async (id, client, dispatch) => {
     // Dispatch success action with response data
     // console.log(res.data)
     dispatch(updateClientSuccess(res.data));
-    console.log(res.data)
+    // console.log(res.data)
   } catch (err) {
     console.error("Update failed:", err); // Log error for debugging
     dispatch(updateClientFailure()); // Dispatch failure action if an error occurs
