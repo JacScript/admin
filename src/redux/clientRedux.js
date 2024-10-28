@@ -15,7 +15,7 @@ const clientSlice = createSlice({
     },
     getClientSuccess: (state, action) => {
       state.isFetching = false;
-      state.products = action.payload;
+      state.clients = action.payload;
     },
     getClientFailure: (state) => {
       state.isFetching = false;
@@ -28,7 +28,7 @@ const clientSlice = createSlice({
     },
     deleteClientSuccess: (state, action) => {
       state.isFetching = false;
-      state.products.splice(
+      state.clients.splice(
         state.products.findIndex((item) => item._id === action.payload),
         1
       );
@@ -43,11 +43,20 @@ const clientSlice = createSlice({
       state.error = false;
     },
     updateClientSuccess: (state, action) => {
-      state.isFetching = false;
-      state.products[
-        state.products.findIndex((item) => item._id === action.payload.id)
-      ] = action.payload.product;
+      state.isFetching = false; // Set fetching to false when the update completes
+    
+      // Find the index of the client to update
+      const index = state.clients.findIndex((item) => item._id === action.payload._id);
+      
+      if (index !== -1) {
+        // Update the client at the found index with the new data from action.payload
+        state.clients[index] = {
+          ...state.clients[index], // Retain the existing properties
+          ...action.payload, // Spread the new client data
+        };
+      }
     },
+    
     updateClientFailure: (state) => {
       state.isFetching = false;
       state.error = true;
@@ -59,7 +68,7 @@ const clientSlice = createSlice({
     },
     addClientSuccess: (state, action) => {
       state.isFetching = false;
-      state.products.push(action.payload);
+      state.clients.push(action.payload);
     },
     addClientFailure: (state) => {
       state.isFetching = false;

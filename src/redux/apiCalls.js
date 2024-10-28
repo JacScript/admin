@@ -83,12 +83,45 @@ export const addProduct = async (product, dispatch) => {
 };
 
 
-export const getClient = async (dispatch) => {
-  dispatch(getProductStart());
+// This function is used to fetch a list of clients (users) from an API
+// It dispatches different actions to manage the state of the request in the Redux store
+export const getClients = async (dispatch) => {
+  // Dispatch the action that signals the start of the API request
+  dispatch(getClientStart());
+
   try {
-    const res = await publicRequest.get("/users");
+    // Make a GET request to the '/users' endpoint using userRequest
+    const res = await userRequest.get("/users");
+
+    // If the request is successful, dispatch the success action with the response data
     dispatch(getClientSuccess(res.data));
   } catch (err) {
+    // If there is an error during the request, dispatch the failure action
     dispatch(getClientFailure());
+  }
+};
+
+export const updateClient = async (id, client, dispatch) => {
+  dispatch(updateClientStart());
+  try {
+    // Send a PUT request to update the client with the specified ID
+    const res = await userRequest.put(`/users/${id}`, client); 
+    // Dispatch success action with response data
+    // console.log(res.data)
+    dispatch(updateClientSuccess(res.data));
+    console.log(res.data)
+  } catch (err) {
+    console.error("Update failed:", err); // Log error for debugging
+    dispatch(updateClientFailure()); // Dispatch failure action if an error occurs
+  }
+};
+
+export const deleteClient = async (id, dispatch) => {
+  dispatch(deleteClientStart());
+  try {
+    const res = await userRequest.delete(`/users/${id}`);
+    dispatch(deleteClientSuccess(res.data));
+  } catch (err) {
+    dispatch(deleteClientFailure());
   }
 };

@@ -18,7 +18,6 @@ export default function FeaturedInfo() {
     getIncome();
   }, []);
 
-  console.log(income)
 
   return (
     <div className="featured">
