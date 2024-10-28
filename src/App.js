@@ -23,10 +23,7 @@ const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).
         </Route>
         {/* <PrivateRoute path="/login" component={Login} redirect={Home}/> */}
 
-<<<<<<< HEAD
        
-=======
->>>>>>> 47c2748e4b75f9b4bdb8cb3cc8c5bdc0eb9da1d0
     { admin && (
 
           <>

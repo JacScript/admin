@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useState } from "react";
 import "./newProduct.css";
 import {
@@ -69,18 +68,12 @@ export default function NewProduct() {
     );
   };
 
-=======
-import "./newProduct.css";
-
-export default function NewProduct() {
->>>>>>> 47c2748e4b75f9b4bdb8cb3cc8c5bdc0eb9da1d0
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Product</h1>
       <form className="addProductForm">
         <div className="addProductItem">
           <label>Image</label>
-<<<<<<< HEAD
           <input
             type="file"
             id="file"
@@ -132,27 +125,3 @@ export default function NewProduct() {
     </div>
   );
 }
-=======
-          <input type="file" id="file" />
-        </div>
-        <div className="addProductItem">
-          <label>Name</label>
-          <input type="text" placeholder="Apple Airpods" />
-        </div>
-        <div className="addProductItem">
-          <label>Stock</label>
-          <input type="text" placeholder="123" />
-        </div>
-        <div className="addProductItem">
-          <label>Active</label>
-          <select name="active" id="active">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
-          </select>
-        </div>
-        <button className="addProductButton">Create</button>
-      </form>
-    </div>
-  );
-}
->>>>>>> 47c2748e4b75f9b4bdb8cb3cc8c5bdc0eb9da1d0

@@ -1,10 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-<<<<<<< HEAD
 const productSlice = createSlice({
-=======
-export const productSlice = createSlice({
->>>>>>> 47c2748e4b75f9b4bdb8cb3cc8c5bdc0eb9da1d0
   name: "product",
   initialState: {
     products: [],
@@ -41,11 +37,7 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-<<<<<<< HEAD
     // //UPDATE
-=======
-    //UPDATE
->>>>>>> 47c2748e4b75f9b4bdb8cb3cc8c5bdc0eb9da1d0
     updateProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
@@ -60,11 +52,7 @@ export const productSlice = createSlice({
       state.isFetching = false;
       state.error = true;
     },
-<<<<<<< HEAD
     //CREATE
-=======
-    //UPDATE
->>>>>>> 47c2748e4b75f9b4bdb8cb3cc8c5bdc0eb9da1d0
     addProductStart: (state) => {
       state.isFetching = true;
       state.error = false;
