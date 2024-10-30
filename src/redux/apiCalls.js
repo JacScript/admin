@@ -125,3 +125,15 @@ export const deleteClient = async (id, dispatch) => {
     dispatch(deleteClientFailure());
   }
 };
+
+
+export const addClient = async (client, dispatch) => {
+  dispatch(addClientStart());
+  try {
+    // create
+    const res = await userRequest.post(`/auth/register`,client);
+    dispatch(addClientSuccess(res.data));
+  } catch (err) {
+    dispatch(addClientFailure());
+  }
+};

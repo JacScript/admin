@@ -163,7 +163,9 @@ export default function User() {
             <div className="userShowInfo">
               <PhoneAndroid className="userShowIcon" />
               <span className="userShowInfoTitle">
-                {client.phoneNumber.startsWith('+') ? client.phoneNumber : `+${client.phoneNumber}`}
+                {client.phoneNumber.startsWith("+")
+                  ? client.phoneNumber
+                  : `+${client.phoneNumber}`}
               </span>
             </div>
             <div className="userShowInfo">
@@ -173,7 +175,7 @@ export default function User() {
             <div className="userShowInfo">
               <LocationSearching className="userShowIcon" />
               <span className="userShowInfoTitle">
-                {client.address.city} | {client.address.country}
+                {client?.address?.city || ""} | {client?.address?.country || ""}
               </span>
             </div>
           </div>
