@@ -33,12 +33,29 @@ export const login = async (dispatch, user) => {
   dispatch(loginStart());
   try {
     const res = await publicRequest.post("/auth/login", user);
+    const { accessToken } = res.data;
+
+    // Save the token in localStorage
+    if (accessToken) {
+      localStorage.setItem("accessToken", accessToken);
+    }
+
     dispatch(loginSuccess(res.data));
   } catch (err) {
-    console.log(err)
     dispatch(loginFailure());
   }
 };
+
+// export const login = async (dispatch, user) => {
+//   dispatch(loginStart());
+//   try {
+//     const res = await publicRequest.post("/auth/login", user);
+//     dispatch(loginSuccess(res.data));
+//   } catch (err) {
+//     console.log(err)
+//     dispatch(loginFailure());
+//   }
+// };
 
 export const getProducts = async (dispatch) => {
   dispatch(getProductStart());
