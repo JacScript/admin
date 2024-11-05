@@ -11,30 +11,26 @@ import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login.jsx";
 import { useSelector } from "react-redux";
-// import PrivateRoute from "./pages/PrivateRoute";
+import NotFound from "./pages/NotFound.jsx";
 
 function App() {
-
-// const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
-const  admin  = useSelector((state) => state.user.currentUser.isAdmin);
-
-// const admin = true;
+  const admin = useSelector((state) => state.user.currentUser?.isAdmin);
 
   return (
     <Router>
       <Switch>
+        {/* Catch-all Route for undefined paths */}
+
         <Route exact path="/">
           <Login />
         </Route>
-        {/* <PrivateRoute path="/login" component={Login} redirect={Home}/> */}
 
-       
-    { admin && (
-
+        {admin && (
           <>
             <Topbar />
             <div className="container">
               <Sidebar />
+
               <Route path="/home">
                 <Home />
               </Route>
@@ -57,8 +53,9 @@ const  admin  = useSelector((state) => state.user.currentUser.isAdmin);
                 <NewProduct />
               </Route>
             </div>
-          </> 
-    )}
+          </>
+        )}
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );

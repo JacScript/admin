@@ -6,7 +6,6 @@ import { useSelector } from "react-redux";
 export default function Topbar() {
   const admin = useSelector((state) => state.user.currentUser);
 
-  console.log(admin)
   return (
     <div className="topbar">
       <div className="topbarWrapper">
