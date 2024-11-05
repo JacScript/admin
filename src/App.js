@@ -18,10 +18,12 @@ function App() {
 // const admin = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).currentUser.isAdmin;
 const  admin  = useSelector((state) => state.user.currentUser.isAdmin);
 
+// const admin = true;
+
   return (
     <Router>
       <Switch>
-        <Route path="/login">
+        <Route exact path="/">
           <Login />
         </Route>
         {/* <PrivateRoute path="/login" component={Login} redirect={Home}/> */}
@@ -33,7 +35,7 @@ const  admin  = useSelector((state) => state.user.currentUser.isAdmin);
             <Topbar />
             <div className="container">
               <Sidebar />
-              <Route exact path="/">
+              <Route path="/home">
                 <Home />
               </Route>
               <Route path="/users">

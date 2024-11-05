@@ -15,7 +15,7 @@ const Login = () => {
   const handleClick = (e) => {
     e.preventDefault();
     login(dispatch, { email, password }).then(() => {
-      history.push("/");
+      history.push("/home");
     });
   };
 
@@ -56,7 +56,7 @@ const Login = () => {
             LOGIN
           </button>) }
 
-      {error && <span>Something went wrong...</span>}
+      { error && ( <span>Something went wrong...</span>)}
     </form>
       </div>
     </div>
