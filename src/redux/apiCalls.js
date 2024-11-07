@@ -1,4 +1,4 @@
-import { loginFailure, loginStart, loginSuccess } from "./userSlice.js";
+import { loginFailure, loginStart, loginSuccess, logoutFailure, logoutStart, logoutSuccess } from "./userSlice.js";
 import { publicRequest, userRequest } from "../requestMethods";
 import {
   getProductFailure,
@@ -144,3 +144,22 @@ export const addClient = async (client, dispatch) => {
     dispatch(addClientFailure());
   }
 };
+
+export const logout = async (dispatch) => {
+  dispatch(logoutStart()); // Start the logout process
+  
+  try {
+    // Send a logout request to the server
+    await publicRequest.post("/auth/signout");
+
+    // Remove any access token or user data from local storage
+    localStorage.removeItem("accessToken");
+
+    // Dispatch success action to update the state
+    dispatch(logoutSuccess());
+  } catch (err) {
+    // Dispatch failure action if an error occurs
+    dispatch(logoutFailure());
+  }
+};
+

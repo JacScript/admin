@@ -30,7 +30,7 @@ const Login = () => {
       // }}
     >
 
-      <div className="wrapper">
+      <div id="wrapper">
 
     <h1 className="title">LOGIN</h1>
 

@@ -12,6 +12,7 @@ import NewProduct from "./pages/newProduct/NewProduct";
 import Login from "./pages/login/Login.jsx";
 import { useSelector } from "react-redux";
 import NotFound from "./pages/NotFound.jsx";
+import Profile from "./pages/profile/Profile.jsx";
 
 function App() {
   const admin = useSelector((state) => state.user.currentUser?.isAdmin);
@@ -51,6 +52,9 @@ function App() {
               </Route>
               <Route path="/newproduct">
                 <NewProduct />
+              </Route>
+              <Route path="/profile">
+                <Profile />
               </Route>
             </div>
           </>

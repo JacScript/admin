@@ -9,24 +9,24 @@ export default function WidgetSm() {
 
 
   useEffect(() => {
-    // Define the function inside useEffect to get users
     const getUsers = async () => {
       try {
         // Send a GET request to fetch new users
-        const res = await userRequest.get("users/?new=true");
-        // Update the state with the fetched users
-        setUsers(res.data);
+        const res = await userRequest.get("/users?new=true");
+        setUsers(res.data); // Update the state with the fetched users
       } catch (error) {
-        // Handle any errors here (e.g., log them for debugging)
         console.error("Error fetching users:", error);
+        if (error.response && error.response.status === 403) {
+          // Additional handling if the request is forbidden
+          // alert("Access denied. You are not authorized to view this content.");
+          console.log("Access denied. You are not authorized to view this content.");
+        }
       }
     };
-
-    // Call the function to execute the request
-    getUsers();
-
-    // The empty dependency array means this effect runs only once, when the component mounts
+  
+    getUsers(); // Call the function to execute the request
   }, []);
+
 
   return (
     <div className="widgetSm">

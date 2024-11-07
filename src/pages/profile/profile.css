@@ -1,0 +1,106 @@
+.profile {
+    flex: 4;
+    width: 80%;
+    /* height: 80%; */
+}
+
+.wrapper {
+    /* padding: 40px; */
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    
+}
+
+.titleContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    /* background-color: blue; */
+}
+
+.titleContainer>button {
+    width: 80px;
+    border: none;
+    padding: 5px;
+    background-color: teal;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 16px;
+}
+
+.updateContainer {
+    padding: 20px;
+    box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    margin: auto;
+    width: 80%;
+}
+
+.updateContainer>span {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.form {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.form>label {
+    margin-bottom: 1px;
+    font-size: 14px;
+}
+
+.updateItem > input {
+    border: none;
+    width: 80%;
+    height: 30px;
+    border-bottom: 1px solid gray;
+}
+
+.updateLeft{
+  width: 50%;
+}
+
+.updateRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 50%;
+}
+
+.updateItem {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.upload{
+    display: flex;
+  align-items: center;
+}
+
+.image{
+    width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.updateButton{
+    border-radius: 5px;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  background-color: darkblue;
+  color: white;
+  font-weight: 600;
+  width: 84px;
+  float: right;
+  text-align: center;
+}
