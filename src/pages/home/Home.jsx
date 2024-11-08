@@ -5,6 +5,7 @@ import WidgetSm from "../../components/widgetSm/WidgetSm";
 import WidgetLg from "../../components/widgetLg/WidgetLg";
 import { useEffect, useMemo, useState } from "react";
 import { userRequest } from "../../requestMethods";
+import { toast } from "react-toastify";
 
 export default function Home() {
   const [userStats, setUserStats] = useState([]); // Initialize state to store user statistics
@@ -31,8 +32,8 @@ export default function Home() {
         }));
 
         setUserStats(stats); // Update state with the processed statistics array
-      } catch (error) {
-        console.error("Error fetching user stats:", error); // Handle and log any errors
+      } catch (err) {
+        toast.error(err?.data?.message || err.message || "An error occurred");
       }
     };
 

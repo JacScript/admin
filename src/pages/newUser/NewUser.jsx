@@ -11,6 +11,7 @@ import app from "../../firebase.js";
 import { addClient } from "../../redux/apiCalls.js";
 
 import "./newUser.css";
+import { toast } from "react-toastify";
 
 export default function NewUser() {
   const history = useHistory();
@@ -59,19 +60,19 @@ const handleDateChange = (e) => setDateOfBirth(e.target.value);
       (snapshot) => {
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
+          toast.info(`Upload is ${progress}% done`);
+          switch (snapshot.state) {
+            case "paused":
+              toast.warn("Upload is paused");
+              break;
+            case "running":
+              toast.success("Upload is running");
+              break;
           default:
         }
       },
-      (error) => {
-        console.error("Upload failed:", error);
+      (err) => {
+        toast.error(err?.data?.message || err.message || "An error occurred");
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -86,8 +87,8 @@ const handleDateChange = (e) => setDateOfBirth(e.target.value);
             img: downloadURL,
           };
           addClient(client, dispatch);
-          // console.log(client);
-          history.push("/users");
+          toast.success("Client added Successfully");
+          history.push("/");
         });
       }
     );

@@ -5,6 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteClient, getClients } from "../../redux/apiCalls";
+import { toast } from "react-toastify";
 
 export default function UserList() {
   const history = useHistory();
@@ -15,9 +16,14 @@ export default function UserList() {
     getClients(dispatch);
   }, [dispatch]);
 
-  const handleDelete = (id) => {
-    deleteClient(id, dispatch);
-    history.push("/users")
+  const handleDelete = async (id) => {
+    try {
+      await deleteClient(id, dispatch);  // Await the deleteClient operation
+      toast.success("Deleted user successfully");
+      history.push("/users");
+    } catch (error) {
+      toast.error("Failed to delete user. Please try again.");
+    }
   };
   
   const columns = [

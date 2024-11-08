@@ -9,6 +9,7 @@ import {
 import app from "../../firebase.js";
 import { addProduct } from "../../redux/apiCalls";
 import { useDispatch } from "react-redux";
+import { toast } from "react-toastify";
 
 export default function NewProduct() {
   const [inputs, setInputs] = useState({});
@@ -43,14 +44,14 @@ export default function NewProduct() {
         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
         const progress =
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log("Upload is " + progress + "% done");
-        switch (snapshot.state) {
-          case "paused":
-            console.log("Upload is paused");
-            break;
-          case "running":
-            console.log("Upload is running");
-            break;
+          toast.info(`Upload is ${progress}% done`);
+          switch (snapshot.state) {
+            case "paused":
+              toast.warn("Upload is paused");
+              break;
+            case "running":
+              toast.success("Upload is running");
+              break;
           default:
         }
       },
@@ -63,6 +64,7 @@ export default function NewProduct() {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
           const product = { ...inputs, img: downloadURL, categories: cat };
           addProduct(product, dispatch);
+          toast.success("Product added Successfully");
         });
       }
     );

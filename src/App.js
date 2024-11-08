@@ -13,55 +13,61 @@ import Login from "./pages/login/Login.jsx";
 import { useSelector } from "react-redux";
 import NotFound from "./pages/NotFound.jsx";
 import Profile from "./pages/profile/Profile.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const admin = useSelector((state) => state.user.currentUser?.isAdmin);
 
   return (
-    <Router>
-      <Switch>
-        {/* Catch-all Route for undefined paths */}
+    <>
+      <ToastContainer className="" />
 
-        <Route exact path="/">
-          <Login />
-        </Route>
+      <Router>
+        <Switch>
+          {/* Catch-all Route for undefined paths */}
 
-        {admin && (
-          <>
-            <Topbar />
-            <div className="container">
-              <Sidebar />
+          <Route exact path="/">
+            <Login />
+          </Route>
 
-              <Route path="/home">
-                <Home />
-              </Route>
-              <Route path="/users">
-                <UserList />
-              </Route>
-              <Route path="/user/:userId">
-                <User />
-              </Route>
-              <Route path="/newUser">
-                <NewUser />
-              </Route>
-              <Route path="/products">
-                <ProductList />
-              </Route>
-              <Route path="/product/:productId">
-                <Product />
-              </Route>
-              <Route path="/newproduct">
-                <NewProduct />
-              </Route>
-              <Route path="/profile">
-                <Profile />
-              </Route>
-            </div>
-          </>
-        )}
-        <Route component={NotFound} />
-      </Switch>
-    </Router>
+          {admin && (
+            <>
+              <Topbar />
+              <div className="container">
+                <Sidebar />
+
+                <Route path="/home">
+                  <Home />
+                </Route>
+                <Route path="/users">
+                  <UserList />
+                </Route>
+                <Route path="/user/:userId">
+                  <User />
+                </Route>
+                <Route path="/newUser">
+                  <NewUser />
+                </Route>
+                <Route path="/products">
+                  <ProductList />
+                </Route>
+                <Route path="/product/:productId">
+                  <Product />
+                </Route>
+                <Route path="/newproduct">
+                  <NewProduct />
+                </Route>
+                <Route path="/profile">
+                  <Profile />
+                </Route>
+              </div>
+            </>
+          )}
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 

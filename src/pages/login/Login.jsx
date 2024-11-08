@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { login } from "../../redux/apiCalls";
 import "./login.css";
+import { toast } from "react-toastify";
 
 
 const Login = () => {
@@ -12,11 +13,25 @@ const Login = () => {
   const dispatch = useDispatch();
   const { isFetching, error } = useSelector((state) => state.user);
 
-  const handleClick = (e) => {
+  const handleClick = async (e) => {
     e.preventDefault();
-    login(dispatch, { email, password }).then(() => {
-      history.push("/home");
-    });
+    try {
+      const response = await login(dispatch, { email, password });
+  
+      // Check if login was unsuccessful
+      if (!response || !response.success) {
+        // Handle unsuccessful login attempts if `response.success` is false or undefined
+        toast.error("Login failed. Please try again.");
+        return;  // Exit the function to avoid proceeding to success actions
+      }
+  
+      // If login was successful
+      toast.success("Logged in Successfully");
+      history.push("/");
+    } catch (err) {
+      // Display error message using `react-toastify`
+      toast.error(err?.data?.message || err.message || "An error occurred");
+    }
   };
 
   return (

@@ -19,6 +19,7 @@ import {
 } from "firebase/storage";
 import app from "../../firebase.js";
 import { updateClient } from "../../redux/apiCalls.js";
+import { toast } from "react-toastify";
 
 export default function User() {
   const location = useLocation();
@@ -86,12 +87,10 @@ export default function User() {
         (snapshot) => {
           // Calculate and log the upload progress
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log("Upload is " + progress + "% done");
+          toast.info(`Upload is ${progress}% done`);
         },
-        (error) => {
-          // Log and display an error if the upload fails
-          console.error("Upload failed: ", error);
-          alert("File upload failed, please try again.");
+        (err) => {
+          toast.error(err?.data?.message || err.message || "An error occurred");
         },
         () => {
           // Once upload is complete, get the download URL of the uploaded file
@@ -102,12 +101,12 @@ export default function User() {
             // Call updateClient to save updated client data in the database
             updateClient(clientId, updatedClient, dispatch)
               .then(() => {
-                console.log("Client updated successfully");
+                toast.success("Client updated successfully");
                 history.push("/users"); // Redirect to the users page on success
               })
               .catch((updateError) => {
                 // Handle any errors that occur during the update process
-                console.error("Client update failed:", updateError);
+                toast.error( updateError?.data?.message ||updateError.message || "Client update failed:");
               });
           });
         }
@@ -116,12 +115,12 @@ export default function User() {
       // If no new file is selected, update the client with the existing image
       updateClient(clientId, updatedClient, dispatch)
         .then(() => {
-          console.log("Client updated successfully with original image");
+          toast.success("Client updated successfully with original image");
           history.push("/users"); // Redirect to the users page on success
         })
         .catch((updateError) => {
           // Handle any errors that occur during the update process
-          console.error("Client update failed:", updateError);
+          toast.error( updateError?.data?.message ||updateError.message || "Client update failed:");
         });
     }
   };
